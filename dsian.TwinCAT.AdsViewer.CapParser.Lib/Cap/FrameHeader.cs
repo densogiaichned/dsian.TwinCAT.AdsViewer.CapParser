@@ -12,6 +12,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
     public sealed class FrameHeader
     {
         public const int HEADER_SIZE = 16;
+
         private FrameHeader(FrameHeaderStruct? frameHdr)
         {
             Header = frameHdr ?? throw new ArgumentNullException(nameof(frameHdr));
@@ -33,7 +34,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
         }
         public override string ToString()
         {
-            return $"TimeStamp={TimeStamp:HH:mm:ss.fffff}, Len={Length}";
+            return $"{TimeStamp:HH:mm:ss.fffff}, Len={Length}";
         }
     }
 }
