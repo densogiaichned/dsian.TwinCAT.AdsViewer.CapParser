@@ -1,4 +1,5 @@
 # dsian.TwinCAT.AdsViewer.CapParser
+![nuget](https://github.com/densogiaichned/dsian.TwinCAT.AdsViewer.CapParser/workflows/nuget/badge.svg)<br/>
 Parses a *.cap logfile from Beckhoff TwinCAT AmsAdsViewer.<br/>
 Although the logfiles basically are "Network Monitor 2.x" files, it only supports ADS frames.
 
@@ -8,8 +9,7 @@ using dsian.TwinCAT.AdsViewer.CapParser.Lib;
 //...
 var capFilePath = @".\DemoFiles\Demo.cap";
 var netMon = await NetMonFileFactory.ParseNetMonFileAsync(capFilePath, CancellationToken.None, logger);
-int i = 0;
-netMon.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{++i} {frame.Header} {frame.Data}"));
+netMon.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{frame.Index} {frame.Header}, {frame.Data}"));
 // ...
 ```
 
