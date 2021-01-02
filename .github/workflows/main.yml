@@ -1,6 +1,6 @@
 name: nuget
 on:
-  workflow_dispatch:
+  #workflow_dispatch:
   push:
     branches:
       - master # Default release branch
