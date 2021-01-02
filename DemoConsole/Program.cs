@@ -24,8 +24,7 @@ namespace DemoConsole
                 {
                     var capFilePath = @".\DemoFiles\Demo.cap";
                     var netMon = await NetMonFileFactory.ParseNetMonFileAsync(capFilePath, CancellationToken.None, logger);
-                    int i = 0;
-                    netMon.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{++i} {frame.Header} {frame.Data}"));
+                    netMon.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{frame.Index} {frame.Header}, {frame.Data}"));
                 }
                 catch(Exception ex)
                 {

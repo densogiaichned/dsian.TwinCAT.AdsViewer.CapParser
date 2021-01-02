@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
 {
-    public sealed record FramePacket(FrameHeader Header, PacketData Data);
-
+    public sealed record FramePacket(FrameHeader Header, PacketData Data)
+    {
+        public int Index { get; init; }
+    }
 }

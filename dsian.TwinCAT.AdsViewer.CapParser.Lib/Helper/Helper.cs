@@ -61,13 +61,18 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Helper
         {
 
             var framePackets = new List<FramePacket>(frameTable.Count());
+            int index = 0;
             foreach (var ft in frameTable)
             {
                 if (cancellationToken != null && cancellationToken.Value.IsCancellationRequested)
                     break;
                 binaryReader.BaseStream.Position = ft;  // Frametable is offset
                 var frHeader = FrameHeader.DeserializeHeader(binaryReader);
-                framePackets.Add(new FramePacket(frHeader, new PacketData(frHeader, binaryReader)));
+                var frPacket = new FramePacket(frHeader, new PacketData(frHeader,binaryReader))
+                {                  
+                    Index = ++index
+                };
+                framePackets.Add(frPacket);
             }
             return framePackets;
         }
