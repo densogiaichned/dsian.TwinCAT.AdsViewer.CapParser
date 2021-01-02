@@ -1,8 +1,10 @@
-name: publish to nuget
+name: nuget
 on:
+  workflow_dispatch:
   push:
     branches:
       - master # Default release branch
+  
 jobs:
   publish:
     name: build, pack & publish
@@ -21,7 +23,7 @@ jobs:
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: Core/Core.csproj
+          PROJECT_FILE_PATH: dsian.TwinCAT.AdsViewer.CapParser.Lib/dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj
           
           # NuGet package id, used for version detection & defaults to project name
           # PACKAGE_NAME: Core
@@ -46,6 +48,3 @@ jobs:
 
           # NuGet server uri hosting the packages, defaults to https://api.nuget.org
           # NUGET_SOURCE: https://api.nuget.org
-
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          # INCLUDE_SYMBOLS: false
