@@ -1,8 +1,10 @@
-name: publish to nuget
+name: nuget
 on:
+  workflow_dispatch:
   push:
     branches:
       - master # Default release branch
+  
 jobs:
   publish:
     name: build, pack & publish
