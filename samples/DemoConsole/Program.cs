@@ -23,8 +23,11 @@ namespace DemoConsole
                 try
                 {
                     var capFilePath = @".\DemoFiles\Demo.cap";
-                    var netMon = await NetMonFileFactory.ParseNetMonFileAsync(capFilePath, CancellationToken.None, logger);
-                    netMon.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{frame.Index} {frame.Header}, {frame.Data}"));
+                    var (ok, nmf) = await NetMonFileFactory.TryParseNetMonFileAsync(capFilePath, CancellationToken.None, logger);
+                    if(ok)
+                    {
+                        nmf.FramePackets.ToList().ForEach(frame => Console.WriteLine($"{frame.Index} {frame.Header}, {frame.Data}"));
+                    }
                 }
                 catch(Exception ex)
                 {

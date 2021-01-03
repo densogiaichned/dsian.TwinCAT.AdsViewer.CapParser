@@ -26,6 +26,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => NetMonFileFactory.ParseNetMonFileAsync(nullString, CancellationToken.None, null));
             await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => NetMonFileFactory.ParseNetMonFileAsync(string.Empty, CancellationToken.None, null));
             await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => NetMonFileFactory.TryParseNetMonFileAsync(fi, CancellationToken.None, null));
         }
 
         [TestMethod]
@@ -35,36 +36,83 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             FileInfo fi = new FileInfo(testFile);
             await Assert.ThrowsExceptionAsync<FileNotFoundException>(() => NetMonFileFactory.ParseNetMonFileAsync(testFile, CancellationToken.None, null));
             await Assert.ThrowsExceptionAsync<FileNotFoundException>(() => NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, null));
+            await Assert.ThrowsExceptionAsync<FileNotFoundException>(() => NetMonFileFactory.TryParseNetMonFileAsync(fi, CancellationToken.None, null));
         }
 
         [TestMethod]
         public async Task Should_parse_two_FramePackets_ReadRequest_ReadResponse_from_string()
         {
             var testFile = @".\TestData\Valid_ReadRequest.cap";
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(testFile, CancellationToken.None, null);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(testFile, CancellationToken.None, null);
 
-            Assert.IsTrue(framePackets.FramePackets.Count() == 2);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
+            Assert.IsTrue(netMonFile.FramePackets.Count() == 2);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
+        }
+        [TestMethod]
+        public async Task Should_TryParse_two_FramePackets_ReadRequest_ReadResponse_from_string()
+        {
+            var testFile = @".\TestData\Valid_ReadRequest.cap";
+            var (ok, netMonFile) = await NetMonFileFactory.TryParseNetMonFileAsync(testFile, CancellationToken.None, null);
+            Assert.IsTrue(ok);
+            Assert.IsTrue(netMonFile.FramePackets.Count() == 2);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
         }
 
         [TestMethod]
         public async Task Should_parse_two_FramePackets_ReadRequest_ReadResponse_from_FileInfo()
         {
             FileInfo fi = new FileInfo(@".\TestData\Valid_ReadRequest.cap");
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, null);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, null);
 
-            Assert.IsTrue(framePackets.FramePackets.Count() == 2);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
-            Assert.IsTrue(framePackets.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
+            Assert.IsTrue(netMonFile.FramePackets.Count() == 2);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
+        }
+        [TestMethod]
+        public async Task Should_TryParse_two_FramePackets_ReadRequest_ReadResponse_from_FileInfo()
+        {
+            FileInfo fi = new FileInfo(@".\TestData\Valid_ReadRequest.cap");
+            var (ok, netMonFile) = await NetMonFileFactory.TryParseNetMonFileAsync(fi, CancellationToken.None, null);
+            Assert.IsTrue(ok);
+            Assert.IsTrue(netMonFile.FramePackets.Count() == 2);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(0).Data.AmsHeader.IsRequest);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsValid);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.AmsCommandId == Lib.TcAds.AmsCommandId.ADS_Read);
+            Assert.IsTrue(netMonFile.FramePackets.ElementAt(1).Data.AmsHeader.IsResponse);
+        }
+
+        [TestMethod]
+        public async Task Should_fail_TryParse_two_FramePackets_ReadRequest_ReadResponse_from_string()
+        {
+            var testFile = @".\TestData\Invalid_ReadRequest.cap";
+            var (ok, netMonFile) = await NetMonFileFactory.TryParseNetMonFileAsync(testFile, CancellationToken.None, null);
+            Assert.IsFalse(ok);
+            Assert.IsNull(netMonFile);
+        }
+
+        [TestMethod]
+        public async Task Should_fail_TryParse_two_FramePackets_ReadRequest_ReadResponse_from_FileInfo()
+        {
+            FileInfo fi = new FileInfo(@".\TestData\Invalid_ReadRequest.cap");
+            var (ok, netMonFile) = await NetMonFileFactory.TryParseNetMonFileAsync(fi, CancellationToken.None, null);
+            Assert.IsFalse(ok);
+            Assert.IsNull(netMonFile);
         }
 
         [TestMethod]
@@ -73,11 +121,11 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             var loggerMock = new Mock<ILogger<NetMonFile>>();
 
             FileInfo fi = new FileInfo(@".\TestData\Invalid_Header_GMBU.cap");
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
 
             var expectedException = new FormatException($"Is not a valid NetMon 2.x file format.");
 
-            Assert.IsNull(framePackets);
+            Assert.IsNull(netMonFile);
             loggerMock.VerifyLoggingException($"Error while parsing file \"{fi.Name}\".", expectedException);
         }
 
@@ -87,10 +135,10 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             var loggerMock = new Mock<ILogger<NetMonFile>>();
 
             FileInfo fi = new FileInfo(@".\TestData\Invalid_Header_Version.cap");
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
             var expectedException = new FormatException($"NetMon file version \"3.x\" is not supported.");
 
-            Assert.IsNull(framePackets);
+            Assert.IsNull(netMonFile);
             loggerMock.VerifyLoggingException($"Error while parsing file \"{fi.Name}\".", expectedException);
         }
 
@@ -100,13 +148,13 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             var loggerMock = new Mock<ILogger<NetMonFile>>();
 
             FileInfo fi = new FileInfo(@".\TestData\Invalid_Ams_Header_AmsCommandId.cap");
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
             var expectedException = new Exception("Fatal Error, no valid constructor found.");
 
-            Assert.IsNull(framePackets);
+            Assert.IsNull(netMonFile);
             loggerMock.VerifyLoggingException($"Error while parsing file \"{fi.Name}\".", expectedException);
         }
-       
+
 
         [TestMethod]
         public async Task Should_log_invalid_Ams_Header_version_3_in_Cap_File()
@@ -114,11 +162,13 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Tests.NetMonFileFactoryTests
             var loggerMock = new Mock<ILogger<NetMonFile>>();
 
             FileInfo fi = new FileInfo(@".\TestData\Invalid_Ams_Header_DataLength.cap");
-            var framePackets = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
+            var netMonFile = await NetMonFileFactory.ParseNetMonFileAsync(fi, CancellationToken.None, loggerMock.Object);
             var expectedException = new FormatException($"Parsed AmsHeader is not valid, Data_Length=255 not allowed.");
 
-            Assert.IsNull(framePackets);
+            Assert.IsNull(netMonFile);
             loggerMock.VerifyLoggingException($"Error while parsing file \"{fi.Name}\".", expectedException);
         }
+
+  
     }
 }

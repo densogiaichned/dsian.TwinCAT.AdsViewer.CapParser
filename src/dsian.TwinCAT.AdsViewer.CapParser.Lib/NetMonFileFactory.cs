@@ -24,12 +24,32 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
             return await ParseNetMonFileAsync(new FileInfo(pathToCap), cancellationToken, logger);
         }
 
-        /// <inheritdoc cref="ParseNetMonFileAsync(string)"/>
+        /// <inheritdoc cref="ParseNetMonFileAsync(string , CancellationToken , ILogger? )"/>
         public static async Task<NetMonFile?> ParseNetMonFileAsync(FileInfo pathToCap, CancellationToken cancellationToken, ILogger? logger)
         {
             var fi = pathToCap ?? throw new ArgumentNullException(nameof(pathToCap));
             if (!fi.Exists) throw new FileNotFoundException("File not found.", fi.FullName);
             return await Task.Run(() => ParseCapFile(fi, cancellationToken, logger));
+        }
+
+        /// <summary>
+        /// Tries to parses a NetMon file, e.g. *.cap and returns instance of <see cref="NetMonFile"/> asynchronously
+        /// </summary>
+        /// <param name="pathToCap"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="logger"></param>
+        /// <returns>true if successful</returns>
+        public static async Task<Tuple<bool, NetMonFile?>> TryParseNetMonFileAsync(string pathToCap, CancellationToken cancellationToken, ILogger? logger)
+        {
+            if (string.IsNullOrEmpty(pathToCap)) throw new ArgumentNullException(nameof(pathToCap));
+            return await TryParseNetMonFileAsync(new FileInfo(pathToCap), cancellationToken, logger);
+        }
+
+        /// <inheritdoc cref="TryParseNetMonFileAsync(string , CancellationToken , ILogger? )"/>
+        public static async Task<Tuple<bool, NetMonFile?>> TryParseNetMonFileAsync(FileInfo pathToCap, CancellationToken cancellationToken, ILogger? logger)
+        {
+            var nmf = await ParseNetMonFileAsync(pathToCap, cancellationToken, logger);
+            return await Task.FromResult(new Tuple<bool, NetMonFile?>(nmf is not null, nmf));
         }
 
         /// <summary>
