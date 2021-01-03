@@ -40,8 +40,8 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
         {
             // check for MagicNumber
             if (Header.magic != NETMON_2_X_MAGIC_UI32) throw new FormatException("Is not a valid NetMon 2.x file format.");
-            // check verion major
-            if (Header.ver_major != VALID_MAJOR) throw new FormatException($"NetMon file version \"{Header.ver_major}.x\" is not supported.k");
+            // check version major
+            if (Header.ver_major != VALID_MAJOR) throw new FormatException($"NetMon file version \"{Header.ver_major}.x\" is not supported.");
         }
 
     }

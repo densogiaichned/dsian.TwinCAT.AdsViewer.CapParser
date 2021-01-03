@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dsian.TwinCAT.AdsViewer.CapParser.Lib\dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj" />
+    <ProjectReference Include="..\..\src\dsian.TwinCAT.AdsViewer.CapParser.Lib\dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

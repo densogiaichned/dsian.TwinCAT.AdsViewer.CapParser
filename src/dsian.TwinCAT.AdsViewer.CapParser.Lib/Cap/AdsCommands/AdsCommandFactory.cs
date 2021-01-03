@@ -48,9 +48,17 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
                 var constructorInfo = adsCommandType.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null,
                     new Type[] { typeof(AmsHeader), typeof(BinaryReader) }, null);
                 if (constructorInfo is not null)
-                    return (IPayload)(constructorInfo.Invoke(new object[] { amsHeader, binaryReader }));
+                    try
+                    {
+                        return (IPayload)(constructorInfo.Invoke(new object[] { amsHeader, binaryReader }));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex.InnerException ?? ex;
+                    }
+
             }
-            throw new Exception("Fatal Error, no valid constructor found.");            
+            throw new Exception("Fatal Error, no valid constructor found.");
         }
 
         private static ushort BuildRequestOfCommand(AmsCommandId amsCommandId)

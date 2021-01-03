@@ -6,13 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E79360D6-9A9F-41D4-AFE0-DDCDFF24E319}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
-		.github\workflows\main.yml = .github\workflows\main.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dsian.TwinCAT.AdsViewer.CapParser.Lib", "dsian.TwinCAT.AdsViewer.CapParser.Lib\dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj", "{C15FC5E6-5834-498C-850B-76D6064C23B4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{4B6582FF-44E2-4164-A5DD-96ADF4301501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoConsole", "DemoConsole\DemoConsole.csproj", "{FE539765-CD85-4B40-B965-93E3105FA8AA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2532F76-4A17-4A05-8D5D-2BC78A477EF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsian.TwinCAT.AdsViewer.CapParser.Lib", "src\dsian.TwinCAT.AdsViewer.CapParser.Lib\dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj", "{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dsian.TwinCAT.AdsViewer.CapParser.Tests", "tests\dsian.TwinCAT.AdsViewer.CapParser.Tests\dsian.TwinCAT.AdsViewer.CapParser.Tests.csproj", "{2115E19A-C827-4014-B59E-6CE0DBBC1864}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{86A10A05-F8ED-4542-AD3D-7A5429032A41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoConsole", "samples\DemoConsole\DemoConsole.csproj", "{E4CA3B66-B958-4A98-A129-F90DD0DB5325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,17 +27,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C15FC5E6-5834-498C-850B-76D6064C23B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C15FC5E6-5834-498C-850B-76D6064C23B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C15FC5E6-5834-498C-850B-76D6064C23B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C15FC5E6-5834-498C-850B-76D6064C23B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE539765-CD85-4B40-B965-93E3105FA8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE539765-CD85-4B40-B965-93E3105FA8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE539765-CD85-4B40-B965-93E3105FA8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE539765-CD85-4B40-B965-93E3105FA8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2115E19A-C827-4014-B59E-6CE0DBBC1864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2115E19A-C827-4014-B59E-6CE0DBBC1864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2115E19A-C827-4014-B59E-6CE0DBBC1864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2115E19A-C827-4014-B59E-6CE0DBBC1864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CA3B66-B958-4A98-A129-F90DD0DB5325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CA3B66-B958-4A98-A129-F90DD0DB5325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CA3B66-B958-4A98-A129-F90DD0DB5325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CA3B66-B958-4A98-A129-F90DD0DB5325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8B6516C-D345-44FA-9D88-E24B3BE2E0CE} = {B2532F76-4A17-4A05-8D5D-2BC78A477EF1}
+		{2115E19A-C827-4014-B59E-6CE0DBBC1864} = {86A10A05-F8ED-4542-AD3D-7A5429032A41}
+		{E4CA3B66-B958-4A98-A129-F90DD0DB5325} = {4B6582FF-44E2-4164-A5DD-96ADF4301501}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB9C7442-49DB-4475-8D57-75B223CA8625}

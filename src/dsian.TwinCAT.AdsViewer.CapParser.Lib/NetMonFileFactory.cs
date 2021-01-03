@@ -57,7 +57,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
             }
             catch (Exception ex)
             {
-                logger?.LogError(ex, $"Error while parsing file \"{fi.FullName}\".");
+                logger?.LogError(ex, $"Error while parsing file \"{fi.Name}\".");
                 return default;
             }
         }
