@@ -11,9 +11,9 @@
     <Copyright>Copyright (c) 2021 densogiaichned</Copyright>
     <Description>Parses a *.cap logfile from Beckhoff TwinCAT AmsAdsViewer (NetworkMonitor V2.x)</Description>
     <RepositoryUrl>https://github.com/densogiaichned/dsian.TwinCAT.AdsViewer.CapParser</RepositoryUrl>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.2</Version>
     <Authors>densogiaichned</Authors>
     <Company />
     <PackageTags>.Net5 Beckhoff TwinCAT TwinCAT.ADS AdsViewer *.cap</PackageTags>

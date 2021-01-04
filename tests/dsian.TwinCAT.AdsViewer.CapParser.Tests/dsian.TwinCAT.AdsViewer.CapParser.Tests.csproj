@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestData\Valid_Test_Data.cap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\Invalid_Ams_Header_DataLength.cap">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
