@@ -34,7 +34,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
         }
 
         /// <summary>
-        /// Tries to parses a NetMon file, e.g. *.cap and returns instance of <see cref="NetMonFile"/> asynchronously
+        /// Tries to parse a NetMon file, e.g. *.cap and returns instance of <see cref="NetMonFile"/> asynchronously
         /// </summary>
         /// <param name="pathToCap"></param>
         /// <param name="cancellationToken"></param>
@@ -47,7 +47,6 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
                 logger?.LoggingError(new ArgumentNullException(nameof(pathToCap)), "Argument is null.", args: nameof(pathToCap));
                 return await Task.FromResult(new Tuple<bool, NetMonFile?>(false, default));
             }
-
             return await TryParseNetMonFileAsync(new FileInfo(pathToCap), cancellationToken, logger);
         }
 
@@ -58,15 +57,15 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
             if (fi == null)
             {
                 logger?.LoggingError(new ArgumentNullException(nameof(fi)), "Argument is null.", args: nameof(fi));
-                return await Task.FromResult(new Tuple<bool, NetMonFile?>(false, default));
+                return new Tuple<bool, NetMonFile?>(false, default);
             }
             if (!fi.Exists)
             {
                 logger?.LoggingError(new FileNotFoundException("Could not find file.", fi.FullName), "File not found. \"{FileName}\"", args: fi.Name);
-                return await Task.FromResult(new Tuple<bool, NetMonFile?>(false, default));
+                return new Tuple<bool, NetMonFile?>(false, default);
             }
             var nmf = await Task.Run(() => ParseCapFile(fi, cancellationToken, logger));
-            return await Task.FromResult(new Tuple<bool, NetMonFile?>(nmf is not null, nmf));
+            return new Tuple<bool, NetMonFile?>(nmf is not null, nmf);
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsWriteControlResponse : IPayload
+    public class AdsWriteControlResponse : IPayload
     {
         /// <summary>
         /// ADS Write Control - Response<br/>
@@ -25,7 +25,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         }
 
 
-        public const int EXPECTED_DATA_LEN = 8;
+        public const int EXPECTED_DATA_LEN = 4;
 
         private byte[] _PacketData;
         public ReadOnlyMemory<byte> PacketData => _PacketData;

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsDeleteDeviceNotificationResponse : IPayload
+    public class AdsDeleteDeviceNotificationResponse : IPayload
     {
         /// <summary>
         /// ADS Write Control - Response<br/>

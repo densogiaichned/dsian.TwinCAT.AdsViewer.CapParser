@@ -3,7 +3,7 @@ using System.IO;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsDeleteDeviceNotificationRequest : IPayload
+    public class AdsDeleteDeviceNotificationRequest : IPayload
     {
         /// <summary>
         /// ADS Write - Request<br/>

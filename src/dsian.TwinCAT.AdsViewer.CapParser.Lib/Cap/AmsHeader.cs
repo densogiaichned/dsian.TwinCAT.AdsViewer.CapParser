@@ -15,11 +15,11 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
     [StructLayout(LayoutKind.Sequential, Size = 32, Pack = 1)]
     public struct AmsHeader
     { 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.U1)]
-        public byte[] AMSNetId_Target;        
+        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.U1)]
+        public AmsNetId AMSNetId_Target;        
         public UInt16 AMSPort_Target;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.U1)]
-        public byte[] AMSNetId_Source;
+        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.U1)]
+        public AmsNetId AMSNetId_Source;
         public UInt16 AMSPort_Source;
         [MarshalAs(UnmanagedType.U2, SizeConst = 2)]
         public AmsCommandId AmsCommandId;

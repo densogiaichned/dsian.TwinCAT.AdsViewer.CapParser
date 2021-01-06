@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsReadStateRequest : IPayload
+    public class AdsReadStateRequest : IPayload
     {
         /// <summary>
         /// ADS Read State - Request<br/>

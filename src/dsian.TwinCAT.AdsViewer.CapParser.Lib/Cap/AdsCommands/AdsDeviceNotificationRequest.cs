@@ -14,7 +14,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
     /// The Notification Stream contains an array with elements of type AdsStampHeader.<br/>
     /// This array again contains elements of type AdsStampHeader.
     /// </remarks>
-    internal class AdsDeviceNotificationRequest : IPayload
+    public class AdsDeviceNotificationRequest : IPayload
     {
 
         /// <inheritdoc cref="AdsDeviceNotificationRequest"/>

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsAddDeviceNotificationRequest : IPayload
+    public class AdsAddDeviceNotificationRequest : IPayload
     {
         /// <summary>
         /// ADS Write - Request<br/>
@@ -40,7 +40,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// Length of data in bytes, which should be sent per notification.
         /// </summary>
-        public UInt32 Length { get; private set; }
+        public int Length { get; private set; }
         /// <summary>
         /// See description of the structure ADSTRANSMODE at the ADS-DLL.
         /// </summary>
@@ -48,11 +48,11 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// At the latest after this time, the ADS Device Notification is called. The unit is 1ms.
         /// </summary>
-        public UInt32 MaxDelay { get; private set; }
+        public int MaxDelay { get; private set; }
         /// <summary>
         /// The ADS server checks if the value changes in this time slice. The unit is 1ms
         /// </summary>
-        public UInt32 CycleTime { get; private set; }
+        public int CycleTime { get; private set; }
         /// <summary>
         /// Must be set to 0 
         /// </summary>
@@ -66,10 +66,10 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         {
             IndexGroup = BitConverter.ToUInt32(_PacketData, 0);
             IndexOffset = BitConverter.ToUInt32(_PacketData, 4);
-            Length = BitConverter.ToUInt32(_PacketData, 8);
+            Length = BitConverter.ToInt32(_PacketData, 8);
             TransmissonMode = (AdsTransMode)BitConverter.ToInt32(_PacketData, 12);
-            MaxDelay = BitConverter.ToUInt32(_PacketData, 16);
-            CycleTime = BitConverter.ToUInt32(_PacketData, 20);
+            MaxDelay = BitConverter.ToInt32(_PacketData, 16);
+            CycleTime = BitConverter.ToInt32(_PacketData, 20);
         }
     }
 }

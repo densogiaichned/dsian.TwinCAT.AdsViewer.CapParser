@@ -4,7 +4,7 @@ using System.IO;
 
 namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
 {
-    internal class AdsWriteControlRequest : IPayload
+    public class AdsWriteControlRequest : IPayload
     {
         /// <summary>
         /// ADS Write Control - Request<br/>
