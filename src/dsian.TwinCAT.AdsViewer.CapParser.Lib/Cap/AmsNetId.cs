@@ -24,7 +24,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
         {
             return base.GetHashCode();
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null or not AmsNetId) return false;
             return AmsAddress.SequenceEqual(((AmsNetId)obj).AmsAddress);
