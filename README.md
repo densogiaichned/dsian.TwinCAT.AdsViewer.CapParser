@@ -20,5 +20,5 @@ or see Project "DemoConsole"
 
 * TC3 ADS Monitor:
     Download: [TF6010 | TC3 ADS Monitor](https://www.beckhoff.com/en-en/products/automation/twincat/tfxxxx-twincat-3-functions/tf6xxx-tc3-connectivity/tf6010.html)  
-    Documentation: [infosys.beckhoff.com](https://infosys.beckhoff.com/index.php?content=../content/1033/tcadsmonitor/html/tcadsmonitor_viewer_overview.htm)  
+    Documentation: [infosys.beckhoff.com](https://infosys.beckhoff.com/index.php?content=../content/1033/tc3_ads_diag_aid/36028797134849931.html)  
     Minimum requirement for TC3 ADS Monitor: [TC1000 | TC3 ADS](https://www.beckhoff.com/en-en/products/automation/twincat/tc1xxx-twincat-3-base/tc1000.html)
