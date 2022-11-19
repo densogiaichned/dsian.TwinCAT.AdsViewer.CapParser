@@ -45,7 +45,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// Data which are supplied back.
         /// </summary>
-        public ReadOnlyMemory<byte> Data => _PacketData[DATA_OFFSET..];
+        public ReadOnlyMemory<byte> Data => _PacketData.AsMemory()[DATA_OFFSET..];
 
         private void ParsePacketData()
         {

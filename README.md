@@ -1,5 +1,6 @@
 # dsian.TwinCAT.AdsViewer.CapParser
-[![build](https://github.com/densogiaichned/dsian.TwinCAT.AdsViewer.CapParser/workflows/build/badge.svg)](https://www.nuget.org/packages/dsian.TwinCAT.AdsViewer.CapParser.Lib/)
+![build](https://github.com/densogiaichned/dsian.TwinCAT.AdsViewer.CapParser/workflows/build/badge.svg)
+[![NuGet version (dsian.TwinCAT.AdsViewer.CapParser.Lib)](https://img.shields.io/nuget/v/dsian.TwinCAT.AdsViewer.CapParser.Lib.svg?style=flat-square)](https://www.nuget.org/packages/dsian.TwinCAT.AdsViewer.CapParser.Lib/)
 
 Parses a *.cap logfile from Beckhoff TwinCAT AmsAdsViewer.  
 Although the logfiles basically are "Network Monitor 2.x" files, it only supports ADS frames.

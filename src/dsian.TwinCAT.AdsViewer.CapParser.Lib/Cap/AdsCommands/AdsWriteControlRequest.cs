@@ -45,7 +45,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// Data which are written in the ADS device.
         /// </summary>
-        public ReadOnlyMemory<byte> Data => _PacketData[EXPECTED_DATA_LEN_MIN..];
+        public ReadOnlyMemory<byte> Data => _PacketData.AsMemory()[EXPECTED_DATA_LEN_MIN..];
 
         public override string ToString()
         {

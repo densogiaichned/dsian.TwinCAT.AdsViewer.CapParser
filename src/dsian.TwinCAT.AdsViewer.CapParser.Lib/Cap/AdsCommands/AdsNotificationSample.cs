@@ -38,7 +38,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// Data which are written in the ADS device.
         /// </summary>
-        public ReadOnlyMemory<byte> Data => _PacketData[EXPECTED_DATA_LEN_MIN..];
+        public ReadOnlyMemory<byte> Data => _PacketData.AsMemory()[EXPECTED_DATA_LEN_MIN..];
 
         public override string ToString()
         {
@@ -53,8 +53,13 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         }
         private void ParsePacketData(ReadOnlyMemory<byte> readOnlyMemory)
         {
+#if NETSTANDARD2_0
+            NotificationHandle = BitConverter.ToUInt32(readOnlyMemory[..4].ToArray(), 0);
+            SampleSize = BitConverter.ToInt32(readOnlyMemory[4..8].ToArray(), 0);
+#else
             NotificationHandle = BitConverter.ToUInt32(readOnlyMemory[..4].Span);
             SampleSize = BitConverter.ToInt32(readOnlyMemory[4..8].Span);
+#endif
         }
     }
 }

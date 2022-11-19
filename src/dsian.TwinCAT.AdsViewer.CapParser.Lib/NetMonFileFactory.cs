@@ -113,7 +113,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib
             argsList.Reverse();
             using (logger?.BeginScope(nameof(NetMonFileFactory)))
             {
-                logger.LogError(ex, $"[{{FunctionName}}] { message }", argsList.ToArray());
+                logger?.LogError(ex, $"[{{FunctionName}}] { message }", argsList.ToArray());
             }
         }
 

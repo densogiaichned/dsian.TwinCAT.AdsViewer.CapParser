@@ -15,7 +15,11 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
 
 
         public const string NETMON_2_X_MAGIC = "GMBU";
+#if NETSTANDARD2_0
+        public static readonly UInt32 NETMON_2_X_MAGIC_UI32 = BitConverter.ToUInt32(Encoding.UTF8.GetBytes(NETMON_2_X_MAGIC), 0);
+#else
         public static readonly UInt32 NETMON_2_X_MAGIC_UI32 = BitConverter.ToUInt32(Encoding.UTF8.GetBytes(NETMON_2_X_MAGIC));
+#endif
         public const int MAGIC_SIZE = 4;
         public const int HEADER_SIZE = 128;
         public const byte VALID_MAJOR = 2;

@@ -61,8 +61,13 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         }
         private void ParsePacketData(ReadOnlyMemory<byte> readOnlyMemory)
         {
+#if NETSTANDARD2_0
+            TimeStamp = DateTime.FromFileTimeUtc(BitConverter.ToInt64(readOnlyMemory[..8].ToArray(), 0));
+            Samples = BitConverter.ToUInt32(readOnlyMemory[8..EXPECTED_DATA_LEN_MIN].ToArray(), 0);
+#else
             TimeStamp = DateTime.FromFileTimeUtc(BitConverter.ToInt64(readOnlyMemory[..8].Span));
             Samples = BitConverter.ToUInt32(readOnlyMemory[8..EXPECTED_DATA_LEN_MIN].Span);
+#endif
             var tmpList = new List<AdsNotificationSample>((int)Samples);
 
 

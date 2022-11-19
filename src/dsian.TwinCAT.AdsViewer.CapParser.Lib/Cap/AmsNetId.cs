@@ -33,7 +33,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap
         {
             if (AmsAddress is null || AmsAddress.Length != Size)
                 return string.Empty;
-            return string.Join('.', AmsAddress);
+            return string.Join(".", AmsAddress);
 
         }
     }

@@ -56,7 +56,7 @@ namespace dsian.TwinCAT.AdsViewer.CapParser.Lib.Cap.AdsCommands
         /// <summary>
         /// Must be set to 0 
         /// </summary>
-        public ReadOnlyMemory<byte> reserved => _PacketData[24..];
+        public ReadOnlyMemory<byte> reserved => _PacketData.AsMemory()[24..];
 
         public override string ToString()
         {
