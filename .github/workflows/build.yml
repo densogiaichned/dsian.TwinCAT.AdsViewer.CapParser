@@ -21,15 +21,17 @@ jobs:
 
      - name: Clean nuget
        run: dotnet nuget locals all --clear
-     - name: Build                  
+     - name: Build
        run: dotnet build -c Release
      - name: Test
+       if: success()
        run: dotnet test -c Release
 
       # Publish
      - name: publish on version change
        id: publish_nuget
        uses: alirezanet/publish-nuget@v3.0.4
+       if: ${{ success() && (github.event_name == 'push' || github.ref == 'refs/heads/main')}}
        with:
          # Filepath of the project to be packaged, relative to root of repository
          PROJECT_FILE_PATH: src/dsian.TwinCAT.AdsViewer.CapParser.Lib/dsian.TwinCAT.AdsViewer.CapParser.Lib.csproj
